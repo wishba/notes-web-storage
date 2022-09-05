@@ -10,25 +10,25 @@
 
 <body>
   <form onsubmit="handleSubmit()">
-    <label for="noteTitle">Title:</label>
-    <input type="text" name="noteTitle" id="noteTitle">
-    <label for="noteTask">Task:</label>
-    <textarea name="noteTask" id="noteTask" cols="30" rows="10"></textarea>
+    <label>Title:</label>
+    <input type="text" id="noteTitle">
+    <label>Task:</label>
+    <textarea id="noteTask" cols="30" rows="10"></textarea>
     <input type="submit" value="Submit">
   </form>
 
   <script>
+    let timestamp = Date.now();
+    document.getElementById("noteTime").innerHTML = timestamp;
+
     function handleSubmit(params) {
       // event.preventDefault();
-
       const noteObj = {
         title: document.getElementById("noteTitle").value,
         task: document.getElementById("noteTask").value
       }
-
       const noteJSON = JSON.stringify(noteObj);
-
-      localStorage.setItem("testJSON", noteJSON);
+      localStorage.setItem(timestamp, noteJSON);
     }
   </script>
 </body>
