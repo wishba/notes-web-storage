@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form onsubmit="handleSubmit()">
+    <label for="noteTitle">Title:</label>
+    <input type="text" name="noteTitle" id="noteTitle">
+    <label for="noteTask">Task:</label>
+    <textarea name="noteTask" id="noteTask" cols="30" rows="10"></textarea>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    function handleSubmit(params) {
+      // event.preventDefault();
+
+      const title = document.getElementById("noteTitle").value;
+      const task = document.getElementById("noteTask").value;
+
+      localStorage.setItem("title", title);
+      localStorage.setItem("task", task);
+    }
+  </script>
+</body>
+
+</html>
