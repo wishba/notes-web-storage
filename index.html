@@ -6,9 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    .notes {
+      background-color: lightgray;
+    }
+  </style>
 </head>
 
-<body onload="storage()">
+<body>
   <form onsubmit="handleSubmit()">
     <label>Title:</label>
     <input type="text" id="noteTitle">
@@ -22,9 +28,36 @@
 
   <hr>
   <h1>All Notes</h1>
-  <div id="allNotes"></div>
+
+  <!-- from starter.json -->
+  <div id="notesStarter"></div>
+
+  <!-- from storage -->
+  <!-- <div id="storageTitle"></div> -->
+  <!-- <div id="storageContent"></div> -->
+  <!-- <div id="allNotes"></div> -->
 
   <script>
+
+    fetch('starter.json')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        appendData(data);
+      });
+
+    function appendData(data) {
+      let notes = document.getElementById("notesStarter");
+      for (let i = 0; i < data.length; i++) {
+        let div = document.createElement("div");
+        div.className = "notes";
+        div.innerHTML = `
+          <p>${data[i].title}</p>
+          <p>${data[i].content}</p>
+        `;
+        notes.appendChild(div);
+      }
+    }
 
     function handleSubmit(params) {
       // event.preventDefault();
@@ -33,21 +66,32 @@
         title: document.getElementById("noteTitle").value,
         content: document.getElementById("noteContent").value
       }
-      const noteJSON = JSON.stringify(noteObj);
-      localStorage.setItem(timestamp, noteJSON);
+      localStorage.setItem(timestamp, JSON.stringify(noteObj));
     }
 
-    function storage() {
-      var values = [],
-        keys = Object.keys(localStorage),
-        i = keys.length;
-      while (i--) {
-        values.push(localStorage.getItem(keys[i]));
-      }
-      // return values;
+    // Retrieving data:
+    // let text = localStorage.getItem("1662356768551");
+    // let obj = JSON.parse(text);
+    // document.getElementById("storageTitle").innerHTML = obj.title;
+    // document.getElementById("storageContent").innerHTML = obj.content;
+    // document.getElementById("allNotes").innerHTML = obj.title;
+
+    // function storage() {
+      // var values = [],
+      //   keys = Object.keys(localStorage),
+      //   i = keys.length;
+      // while (i--) {
+      //   values.push(localStorage.getItem(keys[i]));
+      // }
+      // // return values;
       // console.log(values);
-      document.getElementById("allNotes").innerHTML = values;
-    }
+      // document.getElementById("allNotes").innerHTML = values;
+
+      // console.log(localStorage);
+      // document.getElementById("allNotes").innerHTML = JSON.parse(localStorage);
+      // document.getElementById("allNotes").innerHTML = localStorage;
+    // }
+
   </script>
 </body>
 
