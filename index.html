@@ -21,11 +21,14 @@
     function handleSubmit(params) {
       // event.preventDefault();
 
-      const title = document.getElementById("noteTitle").value;
-      const task = document.getElementById("noteTask").value;
+      const noteObj = {
+        title: document.getElementById("noteTitle").value,
+        task: document.getElementById("noteTask").value
+      }
 
-      localStorage.setItem("title", title);
-      localStorage.setItem("task", task);
+      const noteJSON = JSON.stringify(noteObj);
+
+      localStorage.setItem("testJSON", noteJSON);
     }
   </script>
 </body>
