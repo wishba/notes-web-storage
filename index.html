@@ -8,27 +8,45 @@
   <title>Document</title>
 </head>
 
-<body>
+<body onload="storage()">
   <form onsubmit="handleSubmit()">
     <label>Title:</label>
     <input type="text" id="noteTitle">
-    <label>Task:</label>
-    <textarea id="noteTask" cols="30" rows="10"></textarea>
+    <br>
+    <label>Note:</label>
+    <br>
+    <textarea id="noteContent" cols="30" rows="10"></textarea>
+    <br>
     <input type="submit" value="Submit">
   </form>
 
+  <hr>
+  <h1>All Notes</h1>
+  <div id="allNotes"></div>
+
   <script>
-    let timestamp = Date.now();
-    document.getElementById("noteTime").innerHTML = timestamp;
 
     function handleSubmit(params) {
       // event.preventDefault();
+      let timestamp = Date.now();
       const noteObj = {
         title: document.getElementById("noteTitle").value,
-        task: document.getElementById("noteTask").value
+        content: document.getElementById("noteContent").value
       }
       const noteJSON = JSON.stringify(noteObj);
       localStorage.setItem(timestamp, noteJSON);
+    }
+
+    function storage() {
+      var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+      while (i--) {
+        values.push(localStorage.getItem(keys[i]));
+      }
+      // return values;
+      // console.log(values);
+      document.getElementById("allNotes").innerHTML = values;
     }
   </script>
 </body>
