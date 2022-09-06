@@ -8,6 +8,11 @@
   <title>Document</title>
 
   <style>
+    body {
+      max-width: 600px;
+      margin: auto;
+    }
+
     .notes {
       background-color: lightgray;
     }
@@ -15,6 +20,8 @@
 </head>
 
 <body>
+  <h1>Create Note</h1>
+
   <form onsubmit="handleSubmit()">
     <label>Title:</label>
     <input type="text" id="noteTitle">
