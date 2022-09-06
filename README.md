@@ -11,4 +11,4 @@ https://howtocreateapps.com/fetch-and-display-json-html-javascript/#:~:text=Fetc
 
 ## To do next
 - short the notes object base on timestamp
-- delete notes
+- edit and delete notes
