@@ -29,11 +29,11 @@
   <hr>
   <h1>All Notes</h1>
 
-  <!-- from starter.json -->
-  <div id="notesStarter"></div>
-
   <!-- from storage -->
   <div id="notesStorage"></div>
+
+  <!-- from starter.json -->
+  <div id="notesStarter"></div>
 
   <script>
 
@@ -57,9 +57,15 @@
       let noteObject = JSON.parse(noteValues);
       let div = document.createElement("div");
       div.className = "notes";
+      div.id = noteKey;
       div.innerHTML = `
+        <p>${noteKey}</p>
         <p>${noteObject.title}</p>
         <p>${noteObject.content}</p>
+        <button onclick="
+          localStorage.removeItem(${noteKey});
+          window.location.reload(true);
+        ">Delete</button>
       `;
       document.getElementById("notesStorage").appendChild(div);
     }
