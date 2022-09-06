@@ -1,3 +1,5 @@
+## <a href="https://wishba.github.io/notes-web-storage/" target="_blank" rel="noopener noreferrer">Live site</a>
+
 ## Resources
 - [JSON.stringify()](
   https://www.w3schools.com/js/js_json_stringify.asp
